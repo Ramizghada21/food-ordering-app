@@ -6,9 +6,9 @@ import toast from "react-hot-toast";
 import AddressInputs from "../../components/layout/AddressInputs";
 import { useProfile } from "../../components/useProfile";
 import CartProduct from "../../components/menu/CartProduct";
- 
+
 export default function CartPage() {
-  const {cartProducts,removeCartProduct} = useContext(CartContext);
+  const {cartProducts, removeCartProduct} = useContext(CartContext);
   const [address, setAddress] = useState({});
   const {data:profileData} = useProfile();
 
@@ -38,12 +38,13 @@ export default function CartPage() {
   for (const p of cartProducts) {
     subtotal += cartProductPrice(p);
   }
+
   function handleAddressChange(propName, value) {
-    setAddress(prevAddress => ({...prevAddress, [propName]:value}));
+    setAddress(prevAddress => ({...prevAddress, [propName]: value}));
   }
+
   async function proceedToCheckout(ev) {
     ev.preventDefault();
-    // address and shopping cart products
 
     const promise = new Promise((resolve, reject) => {
       fetch('/api/checkout', {
@@ -67,7 +68,7 @@ export default function CartPage() {
       loading: 'Preparing your order...',
       success: 'Redirecting to payment...',
       error: 'Something went wrong... Please try again later',
-    })
+    });
   }
 
   if (cartProducts?.length === 0) {
@@ -89,11 +90,11 @@ export default function CartPage() {
           {cartProducts?.length === 0 && (
             <div>No products in your shopping cart</div>
           )}
-          {cartProducts?.length > 0 && cartProducts.map((product, index) => (
+          {cartProducts?.length > 0 && cartProducts.map((product) => (
             <CartProduct
-              key={index}
+              key={product.id}
               product={product}
-              onRemove={removeCartProduct}
+              onRemove={() => removeCartProduct(product.id)}
             />
           ))}
           <div className="py-2 pr-16 flex justify-end items-center">
@@ -116,7 +117,7 @@ export default function CartPage() {
               addressProps={address}
               setAddressProp={handleAddressChange}
             />
-            <button type="submit">Pay ${subtotal+5}</button>
+            <button type="submit">Pay ${subtotal + 5}</button>
           </form>
         </div>
       </div>

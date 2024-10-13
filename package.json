@@ -19,7 +19,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-flying-objects": "^1.0.7",
-    "react-hot-toast": "^2.4.1"
+    "react-hot-toast": "^2.4.1",
+    "stripe": "^16.12.0"
   },
   "devDependencies": {
     "@types/node": "22.0.0",
