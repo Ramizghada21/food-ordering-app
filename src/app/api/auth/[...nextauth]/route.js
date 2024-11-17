@@ -3,7 +3,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcrypt";
-import dbConnect from "../../../utils/dbConnect";
+//import dbConnect from "../../../utils/dbConnect";
 import User from "../../../models/User"; // Ensure exact case of file name
 import UserInfo from "../../../models/UserInfo"; // Ensure exact case of file name
 
